@@ -10,13 +10,20 @@
     "Other"
   ],
   "activationEvents": [
+    "onStartupFinished"
   ],
   "main": "./extension.js",
   "contributes": {
-    "commands": [{
-      "command": "docgit.helloWorld",
-      "title": "Hello World"
-    }],
+    "commands": [
+      {
+        "command": "docgit.helloWorld",
+        "title": "Hello World"
+      },
+      {
+        "command": "docgit.docSelectedCode",
+        "title": "Doc the Selected Code"
+      }
+    ],
     "viewsContainers": {
       "activitybar": [{
         "id": "docgit", 
@@ -27,12 +34,26 @@
     "views": {
       "docgit": [
         {
-          "id": "docgit.view1",
-          "name": "View 1"
+          "id": "docView",
+          "name": "View Doc"
+        }
+      ]
+    },
+    
+    "menus": {
+      "editor/context": [
+        {
+          "command": "docgit.docSelectedCode", 
+          "when": "editorHasSelection", 
+          "group": "navigation"
         }
       ]
     }
   },
+
+
+
+
   "scripts": {
     "lint": "eslint .",
     "pretest": "npm run lint",
